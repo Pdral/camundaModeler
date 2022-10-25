@@ -14,14 +14,8 @@ import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 import org.camunda.bpm.model.bpmn.instance.StartEvent;
 import org.camunda.bpm.model.bpmn.instance.UserTask;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         // create an empty model
         BpmnModelInstance modelInstance = Bpmn.createEmptyModel();
         Definitions definitions = modelInstance.newInstance(Definitions.class);
@@ -30,10 +24,11 @@ public class App
 
         // create the process
         Process process = createElement(definitions, "process-with-one-task", Process.class);
+        process.setExecutable(true);
 
         // create start event, user task and end event
         StartEvent startEvent = createElement(process, "start", StartEvent.class);
-        UserTask task1 = createElement(process, "task1", UserTask.class);
+        UserTask task1 = createElement(process, "task", UserTask.class);
         task1.setName("User Task");
         EndEvent endEvent = createElement(process, "end", EndEvent.class);
 
@@ -51,11 +46,12 @@ public class App
             e.printStackTrace();
         }
 
-        Bpmn.writeModelToFile(myObj, modelInstance); 
+        Bpmn.writeModelToFile(myObj, modelInstance);
 
     }
 
-    protected static <T extends BpmnModelElementInstance> T createElement(BpmnModelElementInstance parentElement, String id, Class<T> elementClass) {
+    protected static <T extends BpmnModelElementInstance> T createElement(BpmnModelElementInstance parentElement,
+            String id, Class<T> elementClass) {
         T element = parentElement.getModelInstance().newInstance(elementClass);
         element.setAttributeValue("id", id, true);
         parentElement.addChildElement(element);
@@ -71,8 +67,6 @@ public class App
         sequenceFlow.setTarget(to);
         to.getIncoming().add(sequenceFlow);
         return sequenceFlow;
-      }
-    
+    }
+
 }
-
-
