@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="definitions_da715452-81ec-41d4-a5b7-2047b65a1717" targetNamespace="http://camunda.org/examples" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <process id="process-one-task" isExecutable="true">
+    <startEvent id="start" name="Di generation wanted">
+      <outgoing>start-userTask</outgoing>
+    </startEvent>
+    <userTask id="userTask" name="Generate Model with DI">
+      <incoming>start-userTask</incoming>
+      <outgoing>userTask-end</outgoing>
+    </userTask>
+    <sequenceFlow id="start-userTask" sourceRef="start" targetRef="userTask"/>
+    <endEvent id="end" name="DI generation completed">
+      <incoming>userTask-end</incoming>
+    </endEvent>
+    <sequenceFlow id="userTask-end" sourceRef="userTask" targetRef="end"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_f8c974ab-2f5f-4fe6-ab00-92f52b57a9ee">
+    <bpmndi:BPMNPlane bpmnElement="process-one-task" id="BPMNPlane_48f1c114-36e1-4443-bbc1-c9383b965bc0">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_a701c1eb-e222-48e5-9a58-a3031f45facf">
+        <dc:Bounds height="50.0" width="50.0" x="15.0" y="15.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_c4ad427c-7902-414d-987a-fa790050e78c">
+          <dc:Bounds height="50.0" width="50.0" x="15.0" y="65.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userTask" id="BPMNShape_8fd00499-b030-4d65-8ff7-34eb766a7591">
+        <dc:Bounds height="80.0" width="100.0" x="100.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="start-userTask" id="BPMNEdge_8821f099-d499-45d4-98ca-8765cb31ee14">
+        <di:waypoint x="65.0" y="40.0"/>
+        <di:waypoint x="100.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_bc2171a7-6a6f-48fc-afc1-45406cbd83d3">
+        <dc:Bounds height="50.0" width="50.0" x="250.0" y="15.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_8a29f7a2-672a-4919-a197-d9a954cfa0d0">
+          <dc:Bounds height="50.0" width="50.0" x="250.0" y="65.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="userTask-end" id="BPMNEdge_54249f3e-a243-4ae6-bc40-937dff5a463c">
+        <di:waypoint x="200.0" y="40.0"/>
+        <di:waypoint x="250.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
