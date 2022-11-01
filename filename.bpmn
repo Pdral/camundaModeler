@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<definitions id="definitions_2c16080e-90a9-447f-9ffa-1b6026abed0c" targetNamespace="http://camunda.org/examples" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL">
+<definitions id="definitions_b8574082-660d-4d5d-a582-b9a52fd4ff44" targetNamespace="http://camunda.org/examples" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL">
   <process id="process-with-one-task" isExecutable="true">
-    <startEvent id="start">
-      <outgoing>start-task</outgoing>
+    <startEvent id="Start-Task">
+      <outgoing>Start-Task-User-Task</outgoing>
     </startEvent>
-    <userTask id="task" name="User Task">
-      <incoming>start-task</incoming>
-      <outgoing>task-end</outgoing>
+    <userTask id="User-Task" name="User Task">
+      <incoming>Start-Task-User-Task</incoming>
+      <outgoing>User-Task-end</outgoing>
     </userTask>
     <endEvent id="end">
-      <incoming>task-end</incoming>
+      <incoming>User-Task-end</incoming>
     </endEvent>
-    <sequenceFlow id="start-task" sourceRef="start" targetRef="task"/>
-    <sequenceFlow id="task-end" sourceRef="task" targetRef="end"/>
+    <sequenceFlow id="Start-Task-User-Task" sourceRef="Start-Task" targetRef="User-Task"/>
+    <sequenceFlow id="User-Task-end" sourceRef="User-Task" targetRef="end"/>
   </process>
 </definitions>

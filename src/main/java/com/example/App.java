@@ -13,9 +13,24 @@ import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 import org.camunda.bpm.model.bpmn.instance.StartEvent;
 import org.camunda.bpm.model.bpmn.instance.UserTask;
+import org.json.JSONObject;
 
 public class App {
+
     public static void main(String[] args) {
+        JSONObject process_values = new JSONObject(
+                "{" +
+                        "process_id: process-with-one-task" +
+                        "}");
+        JSONObject start_event_values = new JSONObject(
+                "{" +
+                        "start_id: Start-Task" +
+                        "}");
+        JSONObject user_event_values = new JSONObject(
+                "{" +
+                        "user_event_id: User-Task" +
+                        "}");
+
         // create an empty model
         BpmnModelInstance modelInstance = Bpmn.createEmptyModel();
         Definitions definitions = modelInstance.newInstance(Definitions.class);
@@ -23,12 +38,12 @@ public class App {
         modelInstance.setDefinitions(definitions);
 
         // create the process
-        Process process = createElement(definitions, "process-with-one-task", Process.class);
+        Process process = createElement(definitions, process_values.getString("process_id"), Process.class);
         process.setExecutable(true);
 
         // create start event, user task and end event
-        StartEvent startEvent = createElement(process, "start", StartEvent.class);
-        UserTask task1 = createElement(process, "task", UserTask.class);
+        StartEvent startEvent = createElement(process, start_event_values.getString("start_id"), StartEvent.class);
+        UserTask task1 = createElement(process, user_event_values.getString("user_event_id"), UserTask.class);
         task1.setName("User Task");
         EndEvent endEvent = createElement(process, "end", EndEvent.class);
 
